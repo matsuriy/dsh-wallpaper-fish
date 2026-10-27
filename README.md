@@ -21,43 +21,44 @@ DeepSeek Harness (DSH) 动态壁纸皮肤插件：把应用背景换成**静音�
 
 ## 📦 安装
 
-### 方式一：一键脚本（本机 / 局域网分发）
+### 方式一：DSH 添加插件对话框（最简单 ⭐）
 
-```powershell
-# 在插件目录里执行；DSH_HOME 默认 %DSH_HOME%，否则 F:\tool\deepseek-harness\dsh-data
-powershell -ExecutionPolicy Bypass -File .\install.ps1
-# 指定其他 DSH 数据目录：
-powershell -ExecutionPolicy Bypass -File .\install.ps1 -DshHome 'D:\dsh-data'
+打开 DSH 的「添加插件」对话框，输入包名即可：
+
+```
+dsh-wallpaper-fish
 ```
 
-脚本自动完成：安装依赖到 profile → 写入 cordis.patch.yml 补丁行 → 提示重启。
+> 已发布到 npm 官方源；中国大陆镜像源同步可能有几分钟到几小时的延迟，急用可切换安装源为「官方源」，或用下面的命令方式。
 
-### 方式二：从 GitHub 直接安装
+### 方式二：npm 命令
 
 ```powershell
 $profile = "$env:DSH_HOME\profiles\desktop"
 $pnpm = "$env:DSH_HOME\dsh-runtimes\dsh-primary-runtime\dependencies\pnpm\bin\pnpm.mjs"
-node $pnpm --dir $profile remove dsh-wallpaper-fish
-node $pnpm --dir $profile add github:matsuriy/dsh-wallpaper-fish
-```
-
-然后在 `$profile\cordis.patch.yml` 末尾追加：
-
-```yaml
-- insert:
-    - id: dsh-wallpaper-fish
-      name: dsh-wallpaper-fish
-      config:
-        path: C:/path/to/your/default-wallpaper.mp4
-```
-
-### 方式三：npm（发布后）
-
-```powershell
 node $pnpm --dir $profile add dsh-wallpaper-fish
 ```
 
-> 安装后**重启一次 DeepSeek Harness** 生效（仅首次）。
+### 方式三：从 GitHub 安装（跟随最新代码 / 指定版本）
+
+```powershell
+node $pnpm --dir $profile remove dsh-wallpaper-fish
+node $pnpm --dir $profile add github:matsuriy/dsh-wallpaper-fish            # 跟随 main
+node $pnpm --dir $profile add github:matsuriy/dsh-wallpaper-fish#v1.5.0    # 锁定正式版
+# 或直接使用 Release 附件：
+node $pnpm --dir $profile add "https://github.com/matsuriy/dsh-wallpaper-fish/releases/download/v1.5.0/dsh-wallpaper-fish-1.5.0.tgz"
+```
+
+### 方式四：一键脚本（本机 / 局域网分发）
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+脚本自动完成：安装依赖到 profile → 写入 cordis.patch.yml 补丁行 → 提示重启。
+
+> 任何方式安装后，**重启一次 DeepSeek Harness** 生效（仅首次）。
+> 默认插件 id 为 `dsh-wallpaper-fish`；若与旧版 `dsh-wallpaper-skin`（原版）共存，请先卸载旧版。
 
 ## ♻️ 卸载 / 急救禁用
 

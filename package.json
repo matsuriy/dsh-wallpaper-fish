@@ -1,0 +1,42 @@
+{
+  "name": "dsh-wallpaper-skin",
+  "version": "1.5.0",
+  "description": "DSH 动态壁纸皮肤（大肥鱼版）：mp4/webm 视频或 jpg/png/gif 图片作为应用背景，支持热切换、填充模式、遮罩/亮度调节、残留层清场。基于 ddbj-hub/dsh-wallpaper-skin 深度改造。",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE",
+    "install.ps1"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "wallpaper",
+    "skin",
+    "theme",
+    "video-wallpaper"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matsuriy/dsh-wallpaper-skin.git"
+  },
+  "author": "matsuriy",
+  "license": "MIT",
+  "dsh": {
+    "client": {
+      "platform": "web",
+      "immediately": true
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "name": "dsh-wallpaper-skin",
+  "name": "dsh-wallpaper-fish",
   "version": "1.5.0",
-  "description": "DSH 动态壁纸皮肤（大肥鱼版）：mp4/webm 视频或 jpg/png/gif 图片作为应用背景，支持热切换、填充模式、遮罩/亮度调节、残留层清场。基于 ddbj-hub/dsh-wallpaper-skin 深度改造。",
+  "description": "DSH 动态壁纸皮肤（大肥鱼版）：mp4/webm 视频或 jpg/png/gif 图片作为应用背景，支持热切换、填充模式、遮罩/亮度调节、残留层清场。基于 ddbj-hub/dsh-wallpaper-fish 深度改造。",
   "type": "module",
   "exports": {
     ".": "./lib/index.js",
@@ -26,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matsuriy/dsh-wallpaper-skin.git"
+    "url": "git+https://github.com/matsuriy/dsh-wallpaper-fish.git"
   },
   "author": "matsuriy",
   "license": "MIT",

@@ -1,4 +1,4 @@
-﻿# dsh-wallpaper-skin 一键安装脚本（大肥鱼版）
+# dsh-wallpaper-fish 一键安装脚本（大肥鱼版）
 # 安装：
 #   powershell -ExecutionPolicy Bypass -File .\install.ps1 [-DshHome <DSH 数据目录>] [-ProfileName desktop]
 # 急救禁用（插件导致启动失败时）：
@@ -27,11 +27,11 @@ $patch = Join-Path $profileDir 'cordis.patch.yml'
 function Remove-PluginPatch {
     if (-not (Test-Path $patch)) { return }
     $raw = Get-Content $patch -Raw -Encoding UTF8
-    if ($raw -notmatch 'dsh-wallpaper-skin') { Write-Host '补丁里没有插件条目'; return }
+    if ($raw -notmatch 'dsh-wallpaper-fish') { Write-Host '补丁里没有插件条目'; return }
     $parts = [regex]::Split($raw, '(?m)^(?=- )')
     $kept = @()
     foreach ($p in $parts) {
-        if ($p -match 'dsh-wallpaper-skin') { continue }
+        if ($p -match 'dsh-wallpaper-fish') { continue }
         $kept += $p.TrimEnd("`r", "`n")
     }
     $new = ($kept -join "`n") -replace "(`n){3,}", "`n`n"
@@ -41,23 +41,23 @@ function Remove-PluginPatch {
 
 if ($Disable) {
     Remove-PluginPatch
-    Write-Host '== 已禁用 dsh-wallpaper-skin，重启 DeepSeek Harness 即可正常启动 =='
+    Write-Host '== 已禁用 dsh-wallpaper-fish，重启 DeepSeek Harness 即可正常启动 =='
     exit 0
 }
 
 Write-Host "== 1/3 安装插件到 $profileDir =="
-& $node $pnpm --dir $profileDir remove dsh-wallpaper-skin 2>$null | Out-Null
+& $node $pnpm --dir $profileDir remove dsh-wallpaper-fish 2>$null | Out-Null
 & $node $pnpm --dir $profileDir add "file:$pluginDir"
 if ($LASTEXITCODE -ne 0) { Write-Error 'pnpm add 失败'; exit 1 }
 
 Write-Host "== 2/3 写入 cordis.patch.yml 补丁行 =="
 $content = if (Test-Path $patch) { Get-Content $patch -Raw -Encoding UTF8 } else { '' }
-if ($content -notmatch 'dsh-wallpaper-skin') {
+if ($content -notmatch 'dsh-wallpaper-fish') {
     Add-Content -Path $patch -Encoding UTF8 -Value @'
 
 - insert:
-    - id: dsh-wallpaper-skin
-      name: dsh-wallpaper-skin
+    - id: dsh-wallpaper-fish
+      name: dsh-wallpaper-fish
 '@
     Write-Host "已追加补丁行到 $patch"
 } else {

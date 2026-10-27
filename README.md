@@ -1,4 +1,4 @@
-# dsh-wallpaper-skin（大肥鱼版）🐟
+# dsh-wallpaper-fish（大肥鱼版）🐟
 
 DeepSeek Harness (DSH) 动态壁纸皮肤插件：把应用背景换成**静音循环视频（mp4/webm）**或**图片（jpg/png/gif）**，在 **设置 → 壁纸 / Wallpaper** 里配置，即改即生效，无需重启。
 
@@ -37,16 +37,16 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1 -DshHome 'D:\dsh-data'
 ```powershell
 $profile = "$env:DSH_HOME\profiles\desktop"
 $pnpm = "$env:DSH_HOME\dsh-runtimes\dsh-primary-runtime\dependencies\pnpm\bin\pnpm.mjs"
-node $pnpm --dir $profile remove dsh-wallpaper-skin
-node $pnpm --dir $profile add github:matsuriy/dsh-wallpaper-skin
+node $pnpm --dir $profile remove dsh-wallpaper-fish
+node $pnpm --dir $profile add github:matsuriy/dsh-wallpaper-fish
 ```
 
 然后在 `$profile\cordis.patch.yml` 末尾追加：
 
 ```yaml
 - insert:
-    - id: dsh-wallpaper-skin
-      name: dsh-wallpaper-skin
+    - id: dsh-wallpaper-fish
+      name: dsh-wallpaper-fish
       config:
         path: C:/path/to/your/default-wallpaper.mp4
 ```
@@ -54,7 +54,7 @@ node $pnpm --dir $profile add github:matsuriy/dsh-wallpaper-skin
 ### 方式三：npm（发布后）
 
 ```powershell
-node $pnpm --dir $profile add dsh-wallpaper-skin
+node $pnpm --dir $profile add dsh-wallpaper-fish
 ```
 
 > 安装后**重启一次 DeepSeek Harness** 生效（仅首次）。
@@ -66,7 +66,7 @@ node $pnpm --dir $profile add dsh-wallpaper-skin
 powershell -ExecutionPolicy Bypass -File .\install.ps1 -Disable
 ```
 
-或手动：`node $pnpm --dir $profile remove dsh-wallpaper-skin`，并删除 `cordis.patch.yml` 里对应的 insert 行。
+或手动：`node $pnpm --dir $profile remove dsh-wallpaper-fish`，并删除 `cordis.patch.yml` 里对应的 insert 行。
 
 ## ⚙️ 配置存储
 
